@@ -12,6 +12,7 @@ class Student extends Model
         'name',
         'phoneNumber',
         'gender',
-        'school'
+        'school',
+        'class_id'
     ];
 }
