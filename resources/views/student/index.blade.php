@@ -46,6 +46,9 @@
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                             colspan="1" aria-label="CSS grade: activate to sort column ascending"
                                             style="width: 200.682px;">School</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                            colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                            style="width: 100.682px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,6 +59,15 @@
                                             <td class="">{{ $item->gender == 1 ? 'Nam' : 'Nữ' }}</td>
                                             <td class="">{{ $item->phoneNumber }}</td>
                                             <td class="">{{ $item->school }}</td>
+                                            <td>
+                                                <form action="{{ route('students.destroy', $item) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger">DELETE</button>
+                                                    <a href="{{ route('students.edit', $item) }}"
+                                                        class="btn btn-primary">Update</a>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -80,8 +92,9 @@
                         <div class="col-sm-7">
                             <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
                                 <ul class="pagination">
-                                    <li class="paginate_button previous disabled" id="example1_previous"><a href="#"
-                                            aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a></li>
+                                    <li class="paginate_button previous disabled" id="example1_previous"><a
+                                            href="#" aria-controls="example1" data-dt-idx="0"
+                                            tabindex="0">Previous</a></li>
                                     <li class="paginate_button active"><a href="#" aria-controls="example1"
                                             data-dt-idx="1" tabindex="0">1</a></li>
                                     <li class="paginate_button "><a href="#" aria-controls="example1"

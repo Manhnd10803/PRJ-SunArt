@@ -58,24 +58,31 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Student $student)
     {
-        //
+        $classrooms = $this->classroom->all();
+        return view('student.edit', compact(['student', 'classrooms']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Student $student)
     {
-        //
+        $data = $request->all();
+        $data['class_id'] = (int) ($request->class_id);
+        $data['gender'] = (int) ($request->gender);
+        $student->update($data);
+
+        return redirect()->route('students.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-        //
+        $student->delete();
+        return to_route('students.index');
     }
 }
