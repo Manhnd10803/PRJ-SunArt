@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
@@ -12,6 +13,7 @@ class Student extends Model
         'name',
         'phoneNumber',
         'gender',
-        'school'
+        'school',
+        'class_id'
     ];
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classroom;
 use App\Models\Student;
+use Faker\Core\Number;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -11,9 +13,11 @@ class StudentController extends Controller
      * Display a listing of the resource.
      */
     protected $student;
-    public function __construct(Student $student)
+    protected $classroom;
+    public function __construct(Student $student, Classroom $classroom)
     {
         $this->student = $student;
+        $this->classroom = $classroom;
     }
     public function index()
     {
@@ -26,7 +30,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('student.create');
+        $classrooms = $this->classroom->all();
+        return view('student.create', compact('classrooms'));
     }
 
     /**
@@ -34,7 +39,9 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validated();
+        $data = $request->all();
+        $data['class_id'] = (int) ($request->class_id);
+        $data['gender'] = (int) ($request->gender);
         $this->student->create($data);
 
         return redirect()->route('students.index');
@@ -51,24 +58,31 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Student $student)
     {
-        //
+        $classrooms = $this->classroom->all();
+        return view('student.edit', compact(['student', 'classrooms']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Student $student)
     {
-        //
+        $data = $request->all();
+        $data['class_id'] = (int) ($request->class_id);
+        $data['gender'] = (int) ($request->gender);
+        $student->update($data);
+
+        return redirect()->route('students.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-        //
+        $student->delete();
+        return to_route('students.index');
     }
 }
