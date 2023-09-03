@@ -40,11 +40,12 @@
                             <tr>
                                 <td>{{ $i }}</td>
                                 <td>{{ $class->name }}</td>
-                                <td><a href=""><button class="btn btn-info">Truy cập</button></a>
+                                <td><a href="{{ route('classes.show', $class->id) }}"><button class="btn btn-info">Truy cập</button></a>
                                     <a href="{{ route('classes.edit', $class->id) }}"><button class="btn btn-primary">Cập nhật</button></a>
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger{{ $i }}">
                                         Xóa
                                     </button>
+                              
                                 </td>
                             </tr>
                             @php

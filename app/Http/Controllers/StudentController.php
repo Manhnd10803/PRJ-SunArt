@@ -43,7 +43,7 @@ class StudentController extends Controller
         $data['class_id'] = (int) ($request->class_id);
         $data['gender'] = (int) ($request->gender);
         $this->student->create($data);
-        toastr('Đã thêm học viên ' . $request->name . 'thành công', 'success', 'Thêm thành công');
+
         return redirect()->route('students.index');
     }
 
@@ -73,7 +73,7 @@ class StudentController extends Controller
         $data['class_id'] = (int) ($request->class_id);
         $data['gender'] = (int) ($request->gender);
         $student->update($data);
-        toastr('Đã sửa thông tin học viên ' . $student->name . 'thành công', 'success', 'Cập nhật thành công');
+
         return redirect()->route('students.index');
     }
 
@@ -83,7 +83,7 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $student->delete();
-        toastr('Đã xoá học viên ' . $student->name, 'success', 'Đã xoá thành công');
+        toastr()->success('Đã xóa lớp ' . $student->name . ' thành công', 'Xóa thành công');
         return to_route('students.index');
     }
 }
