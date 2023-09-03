@@ -74,7 +74,7 @@ class StudentController extends Controller
         $data['gender'] = (int) ($request->gender);
         $student->update($data);
 
-        return redirect()->route('students.index');
+        return redirect()->route('classes.show');
     }
 
     /**
@@ -83,7 +83,7 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $student->delete();
-        toastr()->success('Đã xóa lớp ' . $student->name . ' thành công', 'Xóa thành công');
-        return to_route('students.index');
+        toastr()->success('Đã xóa sinh viên ' . $student->name . ' thành công', 'Xóa thành công');
+        return to_route('classes.show');
     }
 }

@@ -57,7 +57,7 @@ class ClassController extends Controller
     public function show(Classroom $class)
     {
         $listStudents = Student::where('class_id', $class->id)->get();
-        
+
         return view('class.show', compact('listStudents', 'class'));
     }
 
@@ -107,5 +107,17 @@ class ClassController extends Controller
         $class->delete();
         toastr()->success('Đã xóa lớp ' . $class->name . ' thành công', 'Xóa thành công');
         return redirect()->route('classes.index');
+    }
+    public function storeList(Request $request)
+    {
+        $studentsData = $request->data;
+        foreach ($studentsData as $studentData) {
+            $student = new Student();
+            $student->name = $studentData['name'];
+            $student->class_id = $studentData['class_id'];
+            $student->save();
+        }
+        toastr()->success('Thêm sinh viên thành công', 'Thêm thành công');
+        return response()->json(200);
     }
 }

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('gender')->default('3'); //1-Nam, 2-Nữ, 3-Không xác định
-            $table->string('phoneNumber');
-            $table->string('school');
+            $table->integer('gender')->nullable(); //1-Nam, 2-Nữ, 3-Không xác định
+            $table->string('phoneNumber')->nullable();
+            $table->string('school')->nullable();
             $table->unsignedBigInteger('class_id');
             $table->foreign('class_id')->references('id')->on('classrooms');
             $table->timestamps();

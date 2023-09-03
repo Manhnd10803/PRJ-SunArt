@@ -21,3 +21,4 @@ Route::resource('students', StudentController::class);
 
 Route::get('/', [ClassController::class, 'index']);
 Route::resource('/classes', ClassController::class);
+Route::post('/classes/add', [ClassController::class,'storeList'])->name('class.add');
