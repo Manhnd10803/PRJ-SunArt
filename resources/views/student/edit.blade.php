@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="content-wrapper">
+  
         <div class="col-md-12 mt-3">
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -67,5 +67,5 @@
                 </form>
             </div>
         </div>
-    </div>
+  
 @endsection
