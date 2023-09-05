@@ -88,6 +88,19 @@
                             <li><a href="{{ route('classes.create') }}"><i class="fa fa-circle-o"></i> Tạo mới</a></li>
                         </ul>
                     </li>
+
+                    <li class="active treeview">
+                        <a href="#">
+                            <i class="fa-solid fa-people-roof fa-xs"></i> <span>Giáo viên</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class=""><a href="{{ route('teacher.index') }}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+                            <li><a href="{{ route('teacher.create') }}"><i class="fa fa-circle-o"></i> Tạo mới</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
             <!-- /.sidebar -->
