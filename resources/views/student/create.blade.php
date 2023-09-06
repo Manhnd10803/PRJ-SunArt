@@ -3,13 +3,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Quản lý lớp học
+        Quản lý học sinh
         {{-- <small>advanced tables</small> --}}
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Lớp học</a></li>
-        <li class="active">Thêm mới</li>
+        <li><a href="{{ route('classes.index') }}">Lớp học</a></li>
+        <li class="active">Thêm học sinh</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -19,34 +19,28 @@
             <!-- Horizontal Form -->
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Thêm lớp học</h3>
+                    <h3 class="box-title">Thêm học sinh</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="{{ route('classes.store') }}" method="POST">
+                <form class="form-horizontal" action="{{ route('students.store') }}" method="POST">
                     @csrf
                     @method('POST')
                     <div class="box-body">
+                        <input type="hidden" name="idClass" value="{{ $idClass }}">
+                        @for ($i = 1; $i <= $number; $i++)
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Tên lớp</label>
+                            <label for="" class="col-sm-2 control-label">Tên học sinh {{ $i }}</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
-                                @error('name')
-                                <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                                <input type="text" class="form-control" name="names[]" value="">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Mô tả</label>
-                            <div class="col-sm-8">
-                                <textarea name="note" id="" class="form-control" cols="30" rows="6">{{ old('note') }}</textarea>
-                            </div>
-                        </div>
+                        @endfor
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
                         {{-- <button class="btn btn-default">Cancel</button> --}}
-                        <button type="submit" class="btn btn-success pull-right">Tạo</button>
+                        <button type="submit" class="btn btn-success pull-right">Thêm</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
